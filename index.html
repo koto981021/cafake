@@ -2,40 +2,155 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>cafake</title>
   <meta name="description" content="cafake（カフェイク）は、日常に少しの余白と遊び心を添える架空のカフェ。">
+
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap" rel="stylesheet">
+
   <style>
     body {
-      font-family: sans-serif;
-      background: #f3f1ee;
-      text-align: center;
-      padding: 50px;
+      margin: 0;
+      font-family: 'Noto Serif JP', serif;
+      background: #e6fff7;
+      color: #333;
     }
-    .card {
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      max-width: 500px;
+
+    /* ファーストビュー */
+    .hero {
+      position: relative;
+      height: 70vh;
+      background-image: url("https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.3);
+    }
+
+    .hero-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      text-align: center;
+    }
+
+    .hero-text h1 {
+      font-size: 48px;
+      margin: 0;
+    }
+
+    /* セクション */
+    .section {
+      padding: 40px 20px;
+      max-width: 900px;
       margin: auto;
     }
-    h1 {
-      margin-bottom: 10px;
+
+    h2 {
+      border-left: 8px solid #ff7a00;
+      padding-left: 10px;
+      color: #009688;
     }
-    button {
-      padding: 10px 20px;
-      border: none;
-      background: #6f4e37;
-      color: white;
-      cursor: pointer;
-      border-radius: 5px;
+
+    .menu-category {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #f2c94c;
+    }
+
+    .menu-item {
+      margin-left: 10px;
+      margin-bottom: 5px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    .info {
+      margin-top: 20px;
+      line-height: 1.8;
+    }
+
+    a {
+      color: #ff7a00;
+      text-decoration: none;
+    }
+
+    /* ▼ スマホ対応（ここ重要） */
+    @media (max-width: 600px) {
+      .hero {
+        height: 50vh;
+      }
+
+      .hero-text h1 {
+        font-size: 28px;
+      }
+
+      .section {
+        padding: 20px 15px;
+      }
+
+      .card {
+        padding: 15px;
+      }
     }
   </style>
 </head>
+
 <body>
-  <div class="card">
-    <h1>cafake</h1>
-    <p>ちょっとだけ現実を忘れられる架空のカフェ</p>
-    <button onclick="alert('いらっしゃいませ ☕')">入店する</button>
+
+  <!-- ファーストビュー -->
+  <div class="hero">
+    <div class="overlay"></div>
+    <div class="hero-text">
+      <h1>cafake</h1>
+      <p>ちょっとだけ現実を忘れられる架空のカフェ</p>
+    </div>
   </div>
+
+  <!-- メニュー -->
+  <div class="section">
+    <h2>Menu</h2>
+
+    <div class="card">
+      <div class="menu-category">▼コーヒー</div>
+      <div class="menu-item">コーヒー（ホット・アイス）400円</div>
+      <div class="menu-item">コールドブリューコーヒー（アイス）450円</div>
+      <div class="menu-item">エスプレッソ シングル 300円</div>
+      <div class="menu-item">エスプレッソ ダブル 450円</div>
+      <div class="menu-item">アメリカーノ（ホット・アイス）450円</div>
+      <div class="menu-item">カフェラテ（ホット・アイス）550円</div>
+      <div class="menu-item">カプチーノ（ホット）550円</div>
+      <div class="menu-item">カフェモカ（ホット・アイス）650円</div>
+      <div class="menu-item">エスプレッソトニック（アイス）500円</div>
+
+      <div class="menu-category">▼ティー</div>
+      <div class="menu-item">セイロン（ホット・アイス）400円</div>
+      <div class="menu-item">アールグレイ（ホット・アイス）400円</div>
+      <div class="menu-item">ティーソーダ（アイス）500円</div>
+      <div class="menu-item">抹茶ラテ（ホット・アイス）550円</div>
+    </div>
+
+    <!-- 店舗情報 -->
+    <div class="card info">
+      <h2>Info</h2>
+      <p>営業時間：7:00 - 19:00</p>
+      <p>住所：東京都目黒区自由が丘1-○-○（自由が丘駅から徒歩3分）</p>
+      <p>Instagram：<a href="https://instagram.com/kt___21" target="_blank">@kt___21</a></p>
+    </div>
+
+  </div>
+
 </body>
 </html>
