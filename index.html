@@ -15,13 +15,11 @@ body {
   color: #00293C;
 }
 
-/* ヒーロー */
 .hero {
   position: relative;
   height: 70vh;
   background-image: url("https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb");
   background-size: cover;
-  background-position: center;
 }
 .overlay {
   position: absolute;
@@ -38,12 +36,12 @@ body {
   text-align: center;
 }
 
-/* セクション */
 .section {
   padding: 40px 20px;
   max-width: 1000px;
   margin: auto;
 }
+
 h2 {
   border-left: 8px solid #F62A00;
   padding-left: 10px;
@@ -53,7 +51,7 @@ h2 {
 /* メニュー */
 .menu-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
 }
 .menu-card {
@@ -64,6 +62,11 @@ h2 {
 .drink-img {
   width: 100%;
   border-radius: 10px;
+}
+.menu-title {
+  font-weight: bold;
+  color: #F62A00;
+  margin-top: 10px;
 }
 
 /* News */
@@ -79,18 +82,11 @@ h2 {
   justify-content: space-between;
   font-weight: bold;
 }
-.arrow {
-  transition: transform 0.3s;
-}
-.open .arrow {
-  transform: rotate(180deg);
-}
-.news-content {
-  display: none;
-  margin-top: 10px;
-}
+.arrow { transition: 0.3s; }
+.open .arrow { transform: rotate(180deg); }
+.news-content { display: none; margin-top: 10px; }
 
-/* moreボタン */
+/* more */
 .more-btn {
   text-align: center;
   margin-top: 20px;
@@ -124,25 +120,23 @@ h2 {
 }
 .calendar div {
   padding: 10px;
-  text-align: center;
   background: #eee;
+  text-align: center;
   cursor: pointer;
 }
 .calendar div:hover {
   background: #F62A00;
   color: white;
 }
-.form {
-  display: none;
-  margin-top: 10px;
-}
+.form { display: none; margin-top: 10px; }
 
-/* info */
+/* info（←前の形に戻した） */
 .info {
   background: white;
   padding: 20px;
   border-radius: 10px;
-  margin-top: 20px;
+  margin-top: 40px;
+  line-height: 1.8;
 }
 
 @media(max-width:600px){
@@ -168,17 +162,29 @@ h2 {
 
 <div class="menu-card">
 <img class="drink-img" src="https://images.unsplash.com/photo-1509042239860-f550ce710b93">
-<p>コーヒー / ラテ / モカ / エスプレッソ</p>
+<div class="menu-title">Coffee</div>
+<p>コーヒー（ホット・アイス）400円</p>
+<p>コールドブリュー 450円</p>
+<p>エスプレッソ 300円〜</p>
+<p>カフェラテ 550円</p>
+<p>カフェモカ 650円</p>
 </div>
 
 <div class="menu-card">
 <img class="drink-img" src="https://images.unsplash.com/photo-1498804103079-a6351b050096">
-<p>セイロン / アールグレイ / 抹茶ラテ</p>
+<div class="menu-title">Tea</div>
+<p>セイロン 400円</p>
+<p>アールグレイ 400円</p>
+<p>ティーソーダ 500円</p>
+<p>抹茶ラテ 550円</p>
 </div>
 
 <div class="menu-card">
 <img class="drink-img" src="https://images.unsplash.com/photo-1551024506-0bccd828d307">
-<p>チーズケーキ / ガトーショコラ / タルト</p>
+<div class="menu-title">Cake</div>
+<p>チーズケーキ 700円</p>
+<p>ガトーショコラ 750円</p>
+<p>レモンタルト 720円</p>
 </div>
 
 </div>
@@ -250,7 +256,7 @@ h2 {
 <div class="info">
 <h2>Info</h2>
 <p>営業時間：7:00 - 19:00</p>
-<p>住所：自由が丘駅 徒歩3分</p>
+<p>住所：東京都目黒区自由が丘1-○-○（徒歩3分）</p>
 <p>Instagram：@kt___21</p>
 </div>
 
@@ -263,7 +269,6 @@ function toggle(el){
   content.style.display = content.style.display === 'block' ? 'none' : 'block';
 }
 
-/* カレンダー生成 */
 const cal = document.getElementById("calendar");
 for(let i=1;i<=30;i++){
   const d = document.createElement("div");
