@@ -37,17 +37,13 @@ body {
   color: white;
   text-align: center;
 }
-.logo {
-  width: 120px;
-  margin-bottom: 10px;
-}
 
+/* セクション */
 .section {
   padding: 40px 20px;
   max-width: 1000px;
   margin: auto;
 }
-
 h2 {
   border-left: 8px solid #F62A00;
   padding-left: 10px;
@@ -96,8 +92,8 @@ h2 {
 
 /* moreボタン */
 .more-btn {
-  margin-top: 20px;
   text-align: center;
+  margin-top: 20px;
 }
 .more-btn button {
   padding: 10px 20px;
@@ -105,30 +101,48 @@ h2 {
   color: white;
   border: none;
   border-radius: 20px;
-  cursor: pointer;
 }
 
-/* アクセス */
+/* map */
 .map iframe {
   width: 100%;
   height: 300px;
-  border: 0;
   border-radius: 10px;
 }
 
-/* 予約UI */
+/* 予約 */
 .reserve {
   background: white;
   padding: 20px;
   border-radius: 10px;
   margin-top: 20px;
 }
-.calendar button {
-  margin: 5px;
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+.calendar div {
+  padding: 10px;
+  text-align: center;
+  background: #eee;
+  cursor: pointer;
+}
+.calendar div:hover {
+  background: #F62A00;
+  color: white;
 }
 .form {
   display: none;
   margin-top: 10px;
+}
+
+/* info */
+.info {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
 }
 
 @media(max-width:600px){
@@ -142,7 +156,6 @@ h2 {
 <div class="hero">
   <div class="overlay"></div>
   <div class="hero-text">
-    <img class="logo" src="https://cdn-icons-png.flaticon.com/512/924/924514.png">
     <h1>cafake</h1>
     <p>ちょっとだけ現実を忘れられる架空のカフェ</p>
   </div>
@@ -152,63 +165,65 @@ h2 {
 
 <h2>Menu</h2>
 <div class="menu-grid">
-  <div class="menu-card">
-    <img class="drink-img" src="https://images.unsplash.com/photo-1509042239860-f550ce710b93">
-    <p>コーヒー 400円</p>
-  </div>
-  <div class="menu-card">
-    <img class="drink-img" src="https://images.unsplash.com/photo-1498804103079-a6351b050096">
-    <p>ティー 400円</p>
-  </div>
-  <div class="menu-card">
-    <img class="drink-img" src="https://images.unsplash.com/photo-1551024506-0bccd828d307">
-    <p>ケーキ 700円</p>
-  </div>
+
+<div class="menu-card">
+<img class="drink-img" src="https://images.unsplash.com/photo-1509042239860-f550ce710b93">
+<p>コーヒー / ラテ / モカ / エスプレッソ</p>
+</div>
+
+<div class="menu-card">
+<img class="drink-img" src="https://images.unsplash.com/photo-1498804103079-a6351b050096">
+<p>セイロン / アールグレイ / 抹茶ラテ</p>
+</div>
+
+<div class="menu-card">
+<img class="drink-img" src="https://images.unsplash.com/photo-1551024506-0bccd828d307">
+<p>チーズケーキ / ガトーショコラ / タルト</p>
+</div>
+
 </div>
 
 <h2>News</h2>
 
 <div class="news-item" onclick="toggle(this)">
-  <div class="news-title">
-    2026/4/1 新メニュー
-    <span class="arrow">▼</span>
-  </div>
-  <div class="news-content">
-    春限定のスペシャルドリンクです。あなたを潤わせます。
-  </div>
+<div class="news-title">2026/4/25 5月の営業スケジュール<span class="arrow">▼</span></div>
+<div class="news-content">5月はGWも休まず営業します。</div>
 </div>
 
 <div class="news-item" onclick="toggle(this)">
-  <div class="news-title">
-    2026/3/17 イベント出店
-    <span class="arrow">▼</span>
-  </div>
-  <div class="news-content">
-    イベント名：目黒リラックスフェス<br>
-    場所：目黒川沿い特設会場<br>
-    内容：コーヒー販売と音楽ライブ<br>
-    条件：犬に鼻をなめられた写真提示
-  </div>
+<div class="news-title">2026/4/1 新メニュー「花よりmannko」<span class="arrow">▼</span></div>
+<div class="news-content">春限定のスペシャルドリンクです。あなたを潤わせます。</div>
+</div>
+
+<div class="news-item" onclick="toggle(this)">
+<div class="news-title">2026/3/25 4月の営業スケジュール<span class="arrow">▼</span></div>
+<div class="news-content">通常営業です。</div>
+</div>
+
+<div class="news-item" onclick="toggle(this)">
+<div class="news-title">2026/3/17 イベント出店<span class="arrow">▼</span></div>
+<div class="news-content">
+イベント名：目黒リラックスフェス<br>
+場所：目黒川沿い特設会場<br>
+内容：コーヒーと音楽ライブ<br>
+参加条件：犬に鼻をなめられた写真提示
+</div>
 </div>
 
 <div class="more-btn">
-  <button>more...</button>
+<button>more...</button>
 </div>
 
 <h2>Access</h2>
 <div class="map">
-<iframe src="https://maps.google.com/maps?q=自由が丘駅&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+<iframe src="https://maps.google.com/maps?q=自由が丘駅&t=&z=15&output=embed"></iframe>
 </div>
 
 <div class="reserve">
 <h2>Reservation</h2>
 <p>予約も承っています</p>
 
-<div class="calendar">
-<button onclick="showForm()">5/1</button>
-<button onclick="showForm()">5/2</button>
-<button onclick="showForm()">5/3</button>
-</div>
+<div class="calendar" id="calendar"></div>
 
 <div class="form">
 <p>時間：
@@ -229,6 +244,7 @@ h2 {
 
 <button onclick="alert('予約しました（仮）')">予約する</button>
 </div>
+
 </div>
 
 <div class="info">
@@ -247,8 +263,13 @@ function toggle(el){
   content.style.display = content.style.display === 'block' ? 'none' : 'block';
 }
 
-function showForm(){
-  document.querySelector('.form').style.display = 'block';
+/* カレンダー生成 */
+const cal = document.getElementById("calendar");
+for(let i=1;i<=30;i++){
+  const d = document.createElement("div");
+  d.textContent = i;
+  d.onclick = () => document.querySelector(".form").style.display="block";
+  cal.appendChild(d);
 }
 </script>
 
