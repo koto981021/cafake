@@ -59,6 +59,32 @@ h2 {
   padding: 15px;
   border-radius: 12px;
 }
+
+/* ▼▼ アニメーション追加 ▼▼ */
+.fade-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: all 0.8s ease;
+}
+.fade-right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: all 0.8s ease;
+}
+.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* 少しずつズレて出る */
+.menu-card:nth-child(2){
+  transition-delay: 0.15s;
+}
+.menu-card:nth-child(3){
+  transition-delay: 0.3s;
+}
+/* ▲▲ ここまで ▲▲ */
+
 .drink-img {
   width: 100%;
   border-radius: 10px;
@@ -130,7 +156,7 @@ h2 {
 }
 .form { display: none; margin-top: 10px; }
 
-/* info（←前の形に戻した） */
+/* info */
 .info {
   background: white;
   padding: 20px;
@@ -160,7 +186,8 @@ h2 {
 <h2>Menu</h2>
 <div class="menu-grid">
 
-<div class="menu-card">
+<!-- 左 -->
+<div class="menu-card fade-left">
 <img class="drink-img" src="https://images.unsplash.com/photo-1509042239860-f550ce710b93">
 <div class="menu-title">Coffee</div>
 <p>コーヒー（ホット・アイス）400円</p>
@@ -170,7 +197,8 @@ h2 {
 <p>カフェモカ 650円</p>
 </div>
 
-<div class="menu-card">
+<!-- 右 -->
+<div class="menu-card fade-right">
 <img class="drink-img" src="https://images.unsplash.com/photo-1498804103079-a6351b050096">
 <div class="menu-title">Tea</div>
 <p>セイロン 400円</p>
@@ -179,7 +207,8 @@ h2 {
 <p>抹茶ラテ 550円</p>
 </div>
 
-<div class="menu-card">
+<!-- 左 -->
+<div class="menu-card fade-left">
 <img class="drink-img" src="https://images.unsplash.com/photo-1551024506-0bccd828d307">
 <div class="menu-title">Cake</div>
 <p>チーズケーキ 700円</p>
@@ -269,6 +298,7 @@ function toggle(el){
   content.style.display = content.style.display === 'block' ? 'none' : 'block';
 }
 
+/* カレンダー */
 const cal = document.getElementById("calendar");
 for(let i=1;i<=30;i++){
   const d = document.createElement("div");
@@ -276,6 +306,17 @@ for(let i=1;i<=30;i++){
   d.onclick = () => document.querySelector(".form").style.display="block";
   cal.appendChild(d);
 }
+
+/* ▼ アニメーション発火 ▼ */
+const els = document.querySelectorAll('.fade-left, .fade-right');
+
+window.addEventListener('scroll', () => {
+  els.forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+      el.classList.add('show');
+    }
+  });
+});
 </script>
 
 </body>
