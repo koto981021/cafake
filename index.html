@@ -11,7 +11,7 @@
     body {
       margin: 0;
       font-family: 'Noto Serif JP', serif;
-      background: #F1F3CE;
+      background: linear-gradient(to bottom, #e8f1f2, #d0e6e8);
       color: #00293C;
     }
 
@@ -43,9 +43,9 @@
     .hero-text h1 {
       font-size: 48px;
       margin: 0;
+      letter-spacing: 3px;
     }
 
-    /* セクション */
     .section {
       padding: 40px 20px;
       max-width: 1000px;
@@ -58,7 +58,7 @@
       color: #1E656D;
     }
 
-    /* グリッドメニュー */
+    /* メニュー */
     .menu-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -69,7 +69,7 @@
     .menu-card {
       background: white;
       padding: 15px;
-      border-radius: 10px;
+      border-radius: 12px;
       transition: transform 0.3s;
     }
 
@@ -83,28 +83,35 @@
       color: #F62A00;
     }
 
-    /* アニメーション */
-    .fade-left {
-      opacity: 0;
-      transform: translateX(-50px);
-      transition: all 0.8s ease;
-    }
-
-    .fade-right {
-      opacity: 0;
-      transform: translateX(50px);
-      transition: all 0.8s ease;
-    }
-
-    .show {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
     .drink-img {
       width: 100%;
       border-radius: 10px;
       margin-bottom: 10px;
+    }
+
+    /* アニメーション */
+    .fade-left { opacity: 0; transform: translateX(-50px); transition: 0.8s; }
+    .fade-right { opacity: 0; transform: translateX(50px); transition: 0.8s; }
+    .show { opacity: 1; transform: translateX(0); }
+
+    /* お知らせ */
+    .news-item {
+      background: white;
+      margin-top: 10px;
+      padding: 15px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .news-title {
+      font-weight: bold;
+      color: #F62A00;
+    }
+
+    .news-content {
+      display: none;
+      margin-top: 10px;
+      font-size: 14px;
     }
 
     /* 店舗情報 */
@@ -121,14 +128,11 @@
       text-decoration: none;
     }
 
-    /* スマホ */
+    /* スマホ対応 */
     @media (max-width: 600px) {
-      .hero {
-        height: 50vh;
-      }
-      .hero-text h1 {
-        font-size: 28px;
-      }
+      .hero { height: 50vh; }
+      .hero-text h1 { font-size: 28px; }
+      .section { padding: 20px 15px; }
     }
   </style>
 </head>
@@ -144,13 +148,12 @@
     </div>
   </div>
 
-  <!-- メニュー -->
   <div class="section">
-    <h2>Menu</h2>
 
+    <!-- メニュー -->
+    <h2>Menu</h2>
     <div class="menu-grid">
 
-      <!-- コーヒー -->
       <div class="menu-card fade-left">
         <img class="drink-img" src="https://images.unsplash.com/photo-1509042239860-f550ce710b93">
         <div class="menu-title">Coffee</div>
@@ -160,7 +163,6 @@
         <p>カフェモカ 650円</p>
       </div>
 
-      <!-- ティー -->
       <div class="menu-card fade-right">
         <img class="drink-img" src="https://images.unsplash.com/photo-1498804103079-a6351b050096">
         <div class="menu-title">Tea</div>
@@ -170,15 +172,42 @@
         <p>ティーソーダ 500円</p>
       </div>
 
-      <!-- ケーキ -->
       <div class="menu-card fade-left">
-        <img class="drink-img" src="https://images.unsplash.com/photo-1505253213348-cd54c8c3b6f6">
+        <img class="drink-img" src="https://images.unsplash.com/photo-1551024506-0bccd828d307">
         <div class="menu-title">Cake</div>
         <p>チーズケーキ 700円</p>
         <p>ガトーショコラ 750円</p>
         <p>レモンタルト 720円</p>
       </div>
 
+    </div>
+
+    <!-- お知らせ -->
+    <h2>News</h2>
+
+    <div class="news-item" onclick="toggle(this)">
+      <div class="news-title">2026/4/25　5月の営業スケジュール</div>
+      <div class="news-content">5月はGWも休まず営業します。</div>
+    </div>
+
+    <div class="news-item" onclick="toggle(this)">
+      <div class="news-title">2026/4/1　新メニュー「花よりmannko」始めました</div>
+      <div class="news-content">春限定のスペシャルドリンクです。</div>
+    </div>
+
+    <div class="news-item" onclick="toggle(this)">
+      <div class="news-title">2026/3/25　4月の営業スケジュール</div>
+      <div class="news-content">通常営業です。</div>
+    </div>
+
+    <div class="news-item" onclick="toggle(this)">
+      <div class="news-title">2026/3/17　イベント出店</div>
+      <div class="news-content">目黒区イベントに参加します！</div>
+    </div>
+
+    <div class="news-item" onclick="toggle(this)">
+      <div class="news-title">more...</div>
+      <div class="news-content">今後さらに追加予定です。</div>
     </div>
 
     <!-- 店舗情報 -->
@@ -191,20 +220,22 @@
 
   </div>
 
-  <!-- JS（スクロールでアニメーション） -->
+  <!-- JS -->
   <script>
-    const elements = document.querySelectorAll('.fade-left, .fade-right');
+    const els = document.querySelectorAll('.fade-left, .fade-right');
 
     window.addEventListener('scroll', () => {
-      elements.forEach(el => {
-        const position = el.getBoundingClientRect().top;
-        const screen = window.innerHeight;
-
-        if (position < screen - 100) {
+      els.forEach(el => {
+        if (el.getBoundingClientRect().top < window.innerHeight - 100) {
           el.classList.add('show');
         }
       });
     });
+
+    function toggle(el) {
+      const content = el.querySelector('.news-content');
+      content.style.display = content.style.display === 'block' ? 'none' : 'block';
+    }
   </script>
 
 </body>
