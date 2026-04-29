@@ -1,242 +1,256 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>cafake</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>cafake</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap" rel="stylesheet">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Noto Serif JP', serif;
-      background: linear-gradient(to bottom, #e8f1f2, #d0e6e8);
-      color: #00293C;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: 'Noto Serif JP', serif;
+  background: linear-gradient(to bottom, #e8f1f2, #d0e6e8);
+  color: #00293C;
+}
 
-    /* ヒーロー */
-    .hero {
-      position: relative;
-      height: 70vh;
-      background-image: url("https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb");
-      background-size: cover;
-      background-position: center;
-    }
+/* ヒーロー */
+.hero {
+  position: relative;
+  height: 70vh;
+  background-image: url("https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb");
+  background-size: cover;
+  background-position: center;
+}
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.3);
+}
+.hero-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+}
+.logo {
+  width: 120px;
+  margin-bottom: 10px;
+}
 
-    .overlay {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.3);
-    }
+.section {
+  padding: 40px 20px;
+  max-width: 1000px;
+  margin: auto;
+}
 
-    .hero-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: white;
-      text-align: center;
-    }
+h2 {
+  border-left: 8px solid #F62A00;
+  padding-left: 10px;
+  color: #1E656D;
+}
 
-    .hero-text h1 {
-      font-size: 48px;
-      margin: 0;
-      letter-spacing: 3px;
-    }
+/* メニュー */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+.menu-card {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+}
+.drink-img {
+  width: 100%;
+  border-radius: 10px;
+}
 
-    .section {
-      padding: 40px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
+/* News */
+.news-item {
+  background: white;
+  margin-top: 10px;
+  padding: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.news-title {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+.arrow {
+  transition: transform 0.3s;
+}
+.open .arrow {
+  transform: rotate(180deg);
+}
+.news-content {
+  display: none;
+  margin-top: 10px;
+}
 
-    h2 {
-      border-left: 8px solid #F62A00;
-      padding-left: 10px;
-      color: #1E656D;
-    }
+/* moreボタン */
+.more-btn {
+  margin-top: 20px;
+  text-align: center;
+}
+.more-btn button {
+  padding: 10px 20px;
+  background: #F62A00;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
 
-    /* メニュー */
-    .menu-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      margin-top: 20px;
-    }
+/* アクセス */
+.map iframe {
+  width: 100%;
+  height: 300px;
+  border: 0;
+  border-radius: 10px;
+}
 
-    .menu-card {
-      background: white;
-      padding: 15px;
-      border-radius: 12px;
-      transition: transform 0.3s;
-    }
+/* 予約UI */
+.reserve {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+.calendar button {
+  margin: 5px;
+}
+.form {
+  display: none;
+  margin-top: 10px;
+}
 
-    .menu-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .menu-title {
-      font-weight: bold;
-      margin-bottom: 10px;
-      color: #F62A00;
-    }
-
-    .drink-img {
-      width: 100%;
-      border-radius: 10px;
-      margin-bottom: 10px;
-    }
-
-    /* アニメーション */
-    .fade-left { opacity: 0; transform: translateX(-50px); transition: 0.8s; }
-    .fade-right { opacity: 0; transform: translateX(50px); transition: 0.8s; }
-    .show { opacity: 1; transform: translateX(0); }
-
-    /* お知らせ */
-    .news-item {
-      background: white;
-      margin-top: 10px;
-      padding: 15px;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    .news-title {
-      font-weight: bold;
-      color: #F62A00;
-    }
-
-    .news-content {
-      display: none;
-      margin-top: 10px;
-      font-size: 14px;
-    }
-
-    /* 店舗情報 */
-    .info {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      margin-top: 40px;
-      line-height: 1.8;
-    }
-
-    a {
-      color: #F62A00;
-      text-decoration: none;
-    }
-
-    /* スマホ対応 */
-    @media (max-width: 600px) {
-      .hero { height: 50vh; }
-      .hero-text h1 { font-size: 28px; }
-      .section { padding: 20px 15px; }
-    }
-  </style>
+@media(max-width:600px){
+.hero{height:50vh;}
+}
+</style>
 </head>
 
 <body>
 
-  <!-- ヒーロー -->
-  <div class="hero">
-    <div class="overlay"></div>
-    <div class="hero-text">
-      <h1>cafake</h1>
-      <p>ちょっとだけ現実を忘れられる架空のカフェ</p>
-    </div>
+<div class="hero">
+  <div class="overlay"></div>
+  <div class="hero-text">
+    <img class="logo" src="https://cdn-icons-png.flaticon.com/512/924/924514.png">
+    <h1>cafake</h1>
+    <p>ちょっとだけ現実を忘れられる架空のカフェ</p>
   </div>
+</div>
 
-  <div class="section">
+<div class="section">
 
-    <!-- メニュー -->
-    <h2>Menu</h2>
-    <div class="menu-grid">
-
-      <div class="menu-card fade-left">
-        <img class="drink-img" src="https://images.unsplash.com/photo-1509042239860-f550ce710b93">
-        <div class="menu-title">Coffee</div>
-        <p>コーヒー 400円</p>
-        <p>コールドブリュー 450円</p>
-        <p>カフェラテ 550円</p>
-        <p>カフェモカ 650円</p>
-      </div>
-
-      <div class="menu-card fade-right">
-        <img class="drink-img" src="https://images.unsplash.com/photo-1498804103079-a6351b050096">
-        <div class="menu-title">Tea</div>
-        <p>セイロン 400円</p>
-        <p>アールグレイ 400円</p>
-        <p>抹茶ラテ 550円</p>
-        <p>ティーソーダ 500円</p>
-      </div>
-
-      <div class="menu-card fade-left">
-        <img class="drink-img" src="https://images.unsplash.com/photo-1551024506-0bccd828d307">
-        <div class="menu-title">Cake</div>
-        <p>チーズケーキ 700円</p>
-        <p>ガトーショコラ 750円</p>
-        <p>レモンタルト 720円</p>
-      </div>
-
-    </div>
-
-    <!-- お知らせ -->
-    <h2>News</h2>
-
-    <div class="news-item" onclick="toggle(this)">
-      <div class="news-title">2026/4/25　5月の営業スケジュール</div>
-      <div class="news-content">5月はGWも休まず営業します。</div>
-    </div>
-
-    <div class="news-item" onclick="toggle(this)">
-      <div class="news-title">2026/4/1　新メニュー「花よりmannko」始めました</div>
-      <div class="news-content">春限定のスペシャルドリンクです。</div>
-    </div>
-
-    <div class="news-item" onclick="toggle(this)">
-      <div class="news-title">2026/3/25　4月の営業スケジュール</div>
-      <div class="news-content">通常営業です。</div>
-    </div>
-
-    <div class="news-item" onclick="toggle(this)">
-      <div class="news-title">2026/3/17　イベント出店</div>
-      <div class="news-content">目黒区イベントに参加します！</div>
-    </div>
-
-    <div class="news-item" onclick="toggle(this)">
-      <div class="news-title">more...</div>
-      <div class="news-content">今後さらに追加予定です。</div>
-    </div>
-
-    <!-- 店舗情報 -->
-    <div class="info">
-      <h2>Info</h2>
-      <p>営業時間：7:00 - 19:00</p>
-      <p>住所：東京都目黒区自由が丘1-○-○（徒歩3分）</p>
-      <p>Instagram：<a href="https://instagram.com/kt___21" target="_blank">@kt___21</a></p>
-    </div>
-
+<h2>Menu</h2>
+<div class="menu-grid">
+  <div class="menu-card">
+    <img class="drink-img" src="https://images.unsplash.com/photo-1509042239860-f550ce710b93">
+    <p>コーヒー 400円</p>
   </div>
+  <div class="menu-card">
+    <img class="drink-img" src="https://images.unsplash.com/photo-1498804103079-a6351b050096">
+    <p>ティー 400円</p>
+  </div>
+  <div class="menu-card">
+    <img class="drink-img" src="https://images.unsplash.com/photo-1551024506-0bccd828d307">
+    <p>ケーキ 700円</p>
+  </div>
+</div>
 
-  <!-- JS -->
-  <script>
-    const els = document.querySelectorAll('.fade-left, .fade-right');
+<h2>News</h2>
 
-    window.addEventListener('scroll', () => {
-      els.forEach(el => {
-        if (el.getBoundingClientRect().top < window.innerHeight - 100) {
-          el.classList.add('show');
-        }
-      });
-    });
+<div class="news-item" onclick="toggle(this)">
+  <div class="news-title">
+    2026/4/1 新メニュー
+    <span class="arrow">▼</span>
+  </div>
+  <div class="news-content">
+    春限定のスペシャルドリンクです。あなたを潤わせます。
+  </div>
+</div>
 
-    function toggle(el) {
-      const content = el.querySelector('.news-content');
-      content.style.display = content.style.display === 'block' ? 'none' : 'block';
-    }
-  </script>
+<div class="news-item" onclick="toggle(this)">
+  <div class="news-title">
+    2026/3/17 イベント出店
+    <span class="arrow">▼</span>
+  </div>
+  <div class="news-content">
+    イベント名：目黒リラックスフェス<br>
+    場所：目黒川沿い特設会場<br>
+    内容：コーヒー販売と音楽ライブ<br>
+    条件：犬に鼻をなめられた写真提示
+  </div>
+</div>
+
+<div class="more-btn">
+  <button>more...</button>
+</div>
+
+<h2>Access</h2>
+<div class="map">
+<iframe src="https://maps.google.com/maps?q=自由が丘駅&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+</div>
+
+<div class="reserve">
+<h2>Reservation</h2>
+<p>予約も承っています</p>
+
+<div class="calendar">
+<button onclick="showForm()">5/1</button>
+<button onclick="showForm()">5/2</button>
+<button onclick="showForm()">5/3</button>
+</div>
+
+<div class="form">
+<p>時間：
+<select>
+<option>10:00</option>
+<option>12:00</option>
+<option>15:00</option>
+</select>
+</p>
+
+<p>人数：
+<select>
+<option>1名</option>
+<option>2名</option>
+<option>3名</option>
+</select>
+</p>
+
+<button onclick="alert('予約しました（仮）')">予約する</button>
+</div>
+</div>
+
+<div class="info">
+<h2>Info</h2>
+<p>営業時間：7:00 - 19:00</p>
+<p>住所：自由が丘駅 徒歩3分</p>
+<p>Instagram：@kt___21</p>
+</div>
+
+</div>
+
+<script>
+function toggle(el){
+  el.classList.toggle("open");
+  const content = el.querySelector('.news-content');
+  content.style.display = content.style.display === 'block' ? 'none' : 'block';
+}
+
+function showForm(){
+  document.querySelector('.form').style.display = 'block';
+}
+</script>
 
 </body>
 </html>
